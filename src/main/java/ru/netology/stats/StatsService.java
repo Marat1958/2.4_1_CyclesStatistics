@@ -4,25 +4,21 @@ public class StatsService {
 
     //Сумма всех продаж
     public int sumAllSales(int[] sales) {
-        int sumAllSales = 0;
+        int sum = 0;
         for (int sale : sales) { //Для каждого sale из sales сделать...
-            sumAllSales += sale; //sumAllSales = sumAllSales + sale
+            sum += sale; //sumAllSales = sumAllSales + sale
         }
-        return sumAllSales;
+        return sum;
     }
-
 
     //Средняя сумма продаж в месяц
-    public int averageSales(int[] sales) {
-        int averageSales = 0;
-        int sum = 0;
-        for (int sale : sales) {
-            sum += sale;
-            averageSales = sum / sales.length;
-        }
+    public double averageSales(double[] sales) {
+        double averageSales = 0;
+        for (double sale : sales) {
+            averageSales += sale /sales.length;
+       }
         return averageSales;
     }
-
 
     //Номер месяца максимальных продаж
     public int maxMonth(int[] sales) {
@@ -37,7 +33,6 @@ public class StatsService {
         return maxMonth + 1;
     }
 
-
     //Номер месяца минимальных продаж
     public int minMonth(int[] sales) {
         int minMonth = 0;
@@ -51,34 +46,25 @@ public class StatsService {
         return minMonth + 1;
     }
 
-
     //К-во месяцев с продажами ниже среднего за год
-    public int underAverage(int[] sales) {
-        int sum = 0;
-        for (int sale : sales) {
-            sum += sale;
-        }
-        int count = 0;
-        for (int sale : sales) {
-            if (sale < sum / sales.length) {
-                count++;
+    public double underAverage(double[] sales) {
+        double underMonths = 0;
+        for (double sale : sales) {
+            if (sale < averageSales(sales)) {
+                underMonths = underMonths + 1;
             }
         }
-        return count;
+        return underMonths;
     }
 
-    //К-во месяцев с продажами ниже среднего за год
-    public int aboveAverage(int[] sales) {
-        int sum = 0;
-        for (int sale : sales) {
-            sum += sale;
-        }
-        int count = 0;
-        for (int sale : sales) {
-            if (sale > sum / sales.length) {
-                count++;
-            }
-        }
-        return count;
+    //К-во месяцев с продажами выше среднего за год
+    public double upperAverage(double[] sales) {
+         double upperMonth = 0;
+         for (double sale : sales) {
+             if (sale > averageSales(sales)) {
+                 upperMonth = upperMonth + 1;
+             }
+         }
+         return upperMonth;
     }
-}
+ }
